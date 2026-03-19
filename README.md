@@ -29,6 +29,33 @@ Some of the available features include:
 
 Please read [build from source documentation](https://www.traccar.org/build/) on the official website.
 
+## Local Build and Packaging (fork workflow)
+
+For local deployment testing, this repository can build:
+
+- compiled artifacts only (`tracker-server.jar`, dependencies, web static files)
+- full installer archives (`traccar-linux-64-<version>.zip`, etc.) that include `traccar.run`
+
+From repo root:
+
+```bash
+make build
+```
+
+This builds server + web artifacts only.
+
+```bash
+make package VERSION=6.12.3 PLATFORM=linux-64
+```
+
+This creates a full reinstallable package through `setup/package.sh`.
+
+Notes:
+
+- `VERSION` is required for `make package`.
+- `PLATFORM` defaults to `linux-64` and supports values accepted by `setup/package.sh` (`linux-64`, `linux-arm`, `windows-64`, `other`, `all`).
+- The installer preserves `/opt/traccar/conf/traccar.xml` during reinstall via `setup/setup.sh`.
+
 ## Team
 
 - Anton Tananaev ([anton@traccar.org](mailto:anton@traccar.org))
